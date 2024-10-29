@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define the Item schema
 const itemSchema = new mongoose.Schema({
     itemNo: {
         type: Number,
@@ -44,7 +43,7 @@ const itemSchema = new mongoose.Schema({
     },
 });
 
-// Create the Item model
+
 const Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;

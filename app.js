@@ -32,9 +32,11 @@ mongoose.connect(DB_CONNECTION)
  * Hint :rout requiring
  */
 const supplierRoutes = require('./routes/supplierRoutes/supplier')
-
+const purchseRoutes = require('./routes/purchaseRoutes/purchase')
 const itemRoutes = require('./routes/itemRoutes/items')
 
 
 app.use('/supplier',supplierRoutes)
 app.use('/items',itemRoutes)
+app.use('/purchase',purchseRoutes)
+

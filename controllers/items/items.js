@@ -21,7 +21,9 @@ const createItem = async (req, res) => {
         console.log(imagesUrl);
         
 
-        // Create and save the item in the database
+       /**
+        * Create and save the item in the database
+        */
         const newItem = new items({
             itemNo,
             itemName,
@@ -37,9 +39,8 @@ const createItem = async (req, res) => {
 
         const savedItem = await newItem.save();
 
-        // Send a response
         res.status(201).json({
-            succuss:true,
+            success:true,
             message: 'Item created successfully!',
             item: savedItem,
         });
@@ -53,11 +54,31 @@ const createItem = async (req, res) => {
       /**
  * Auther:sudais
  * data:28-10-2024
- * Hint :get all items
+ * Hint :get all items count
  */
 
       
 const getitems = async (req, res) => {
+    try {
+      const count = await items.countDocuments(); 
+      res.json({ 
+        count
+       }); 
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+      console.log(error);
+      
+    }
+  };
+  
+
+        /**
+ * Auther:sudais
+ * data:29-10-2024
+ * Hint :get all items 
+ */
+
+  const getAllItems = async (req, res) => {
     try {
       const suppliers = await items.find(); 
       res.json({ 
@@ -68,10 +89,10 @@ const getitems = async (req, res) => {
       console.log(error);
       
     }
-  };
-  
+  }; 
 
 module.exports ={
     createItem,
-    getitems
+    getitems,
+    getAllItems
 };
